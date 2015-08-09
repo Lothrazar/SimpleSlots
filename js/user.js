@@ -1,18 +1,21 @@
 
-function User(name, credits, points) {
+function User(name, credits) 
+{
     this.username = name;
     this.credits = credits;
-    this.points = points;
+    this.cost = 10;//cost per play //TODO: fix implement complete this
+    this.update();
 };
 
 User.prototype.addCredits = function(c)
 {
-    credits += c;
+    this.credits += c;
+    this.update();
 };
 
-User.prototype.addPoints = function(c)
+User.prototype.update = function()
 {
-    points += c;
+    $("#points").val(this.credits);
 };
 
 

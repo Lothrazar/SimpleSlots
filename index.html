@@ -77,8 +77,15 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
          </div>
          <div id="navbar" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
-               <li class="active"><input style="margin-top:13px" type="text" id="login" value="Guest"/></li>
-            
+               <li class="active">
+                   <input id="login" style="margin-top:13px" type="text"  value="Guest"/>
+               </li>
+               <li>
+                   &nbsp;
+                   &nbsp;
+                   Credits: 
+                   <input id="points" style="margin-top:13px" type="text" disabled="disabled" />
+               </li>
            </ul>
          </div><!--/.nav-collapse -->
        </div>
@@ -99,33 +106,40 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
 { 
 //my startup code here.  Could be refactored into a main.js or something 
   
- 
- //testing where we need this
-                $('#group_left').removeClass("hidden");
-                $('#group_mid').removeClass("hidden");
-                $('#group_right').removeClass("hidden");
-                
-                
-      //preload images before drawing on cnavas
-        var btn = $('#myButton');
+    if(window.spinner == null){window.spinner = new Spinner(1,1,1);}
 
-        btn.on('click', function () 
-       {
-         btn.prop('enabled',false);
-        if(window.user == null){
+    if(window.user == null)
+    {
             //TODO : serverside code to lookup existing user, find existing credits dont start this
             //but req says new users start at 20 credits so go for that
             //points here are zero since no storage yet too
-            window.user= new User($("login").val(),20,0);
+        var newUserStartCredits = 20;
+          
+        window.user = new User($("login").val(),newUserStartCredits);
+        
+    }
+     
+    var btn = $('#myButton');
 
+     btn.on('click', function () 
+     {
+        btn.prop('enabled',false);
+        
+        spinner.spin();
+
+        var won = spinner.getWinnings();
+        
+        //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
+        //console.log("won "+won);
+        if(won > 0)
+        {
+           // console.log('you won '+won);
+            
+            user.addCredits(won);
+            
+           // alert("win");
         }
-        if(window.spinner == null){window.spinner = new Spinner(1,1,1);}
-
-
-        window.spinner.spin();
-        window.spinner.update();
-
-
+        
 
         btn.prop('enabled',true);
 
@@ -153,7 +167,6 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
           
         });
    });</script>
-  
   
   
     </body>

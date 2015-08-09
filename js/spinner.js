@@ -1,12 +1,6 @@
- /*
- function Spinner() {
-    this.left = 1;
-    this.middle = 1;
-    this.right = 1; 
-    this.level = 1;
-    this.MIN_LEVEL = 1;//never changes in current version 
-};*/
-function Spinner(left , middle, right, level) {
+
+function Spinner(left , middle, right, level) 
+{
     this.left = left;
     this.middle = middle;
     this.right = right; 
@@ -22,6 +16,12 @@ function Spinner(left , middle, right, level) {
     this.rightimg = [];
     for(var i = 1; i <= 5; i++)
         this.rightimg[i] = "right_"+i;
+    
+    this.update();
+    //first time only:
+    $('#group_left').removeClass("hidden");
+    $('#group_mid').removeClass("hidden");
+    $('#group_right').removeClass("hidden");
 };
 
 Spinner.prototype.update = function()
@@ -44,6 +44,9 @@ Spinner.prototype.update = function()
             $("#"+this.rightimg[i]).removeClass("hidden");
         else
             $("#"+this.rightimg[i]).addClass("hidden");
+        
+        
+       
     }
     
 }
@@ -78,15 +81,17 @@ Spinner.prototype.getPointsCost = function()
 Spinner.prototype.detectMatch = function()
 {
     //if this is true, then left===right also follows logically, and so on
-    return this.left === this.middle && this.left === this.right;
+    return (this.left === this.middle) && (this.left === this.right);
 };
 
 Spinner.prototype.getWinnings = function()
 {
-    if(this.detectMatch() == false) {return 0;}
-    //else all numbers are the same so just compute the points
-    
-    var points = this.MULT & this.left;
+    //console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
+    //console.log(this.detectMatch());
+    if(this.detectMatch())  //all numbers are the same so just compute the points
+        return this.getMultiplier() & this.left;
+    else
+        return 0;
 };
 
 Spinner.prototype.spin = function()
@@ -94,6 +99,8 @@ Spinner.prototype.spin = function()
     this.left = this.getRandom();
     this.middle = this.getRandom();
     this.right = this.getRandom();
+    
+    this.update();
 };
 
 Spinner.prototype.getBonusForLevel = function()
