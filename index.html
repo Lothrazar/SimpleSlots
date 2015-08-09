@@ -18,6 +18,9 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 
+        <!-- Latest compiled and minified CDN JavaScript -->
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
 
         <style type="text/css">body {
   padding-top: 50px;
@@ -78,11 +81,46 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
          <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
        </div>
 
+         <button type="button" id="myButton" data-loading-text="Click Me" class="btn btn-primary" >
+        Loading state
+      </button>
+
+      <script>
+ 
+           var btn = $('#myButton');
+           
+        btn.on('click', function () {
+      //   btn.prop('disabled', true);
+          // business logic...
+          var testLevel = 1;
+          console.log('btnpress');
+          
+          $.ajax({
+            url: "/spin",
+             type: "POST",
+            data: {level:testLevel},
+          success: function(o){
+   
+              //  btn.prop('disabled', false);
+                console.log("success:");
+                console.log(o);
+            },
+            dataType: 'json'
+          }).done(function ( data ) 
+             {
+                 //+JSON.stringify(data
+                console.log("ajax callback response");
+                console.log(data);
+                //console.log(JSON.parse(data));
+             });
+          
+        //  btn.button('reset')
+        });
+      </script>
+         
+         
      </div><!-- /.container -->
 
 
-        <!-- Latest compiled and minified CDN JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
     </body>
 </html>
