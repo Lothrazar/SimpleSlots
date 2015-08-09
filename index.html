@@ -97,14 +97,14 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
           
           $.ajax({
             url: "/spin",
-             type: "POST",
+             type: "GET",
             data: {level:testLevel},
-          success: function(o){
+       /*   success: function(o){
    
               //  btn.prop('disabled', false);
                 console.log("success:");
                 console.log(o);
-            },
+            },*/
             dataType: 'json'
           }).done(function ( data ) 
              {

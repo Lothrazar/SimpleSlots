@@ -9,7 +9,7 @@ http.createServer(function(req, res)
     // _get['data']
    
     
-   // console.log( req.url);
+  // console.log( req.url.substring(0,6));
     
     
     if(req.url == "/" || req.url == "/index.html")
@@ -21,13 +21,13 @@ http.createServer(function(req, res)
             res.end();
         });
     }
-    else if(req.url == "/spin")
+    else if(req.url.substring(0,5) == "/spin")
     {
        // console.log("!zxcvzxcv!ok sending out stuff...!!!");
        //   req.on('end', function () 
        // {
             var get = url.parse(req.url, true).query; 
-         //   var level = get['level'];
+          var level = parseInt(get['level'])+1;
 
 
             res.setHeader("Content-Type", "application/json");
@@ -36,7 +36,7 @@ http.createServer(function(req, res)
             //res.send(JSON.stringify({ level : level }));
             // Send data and end response. 
             //res.send(JSON.stringify({ level : level })); 
-            var test =JSON.stringify({ level : 1 });
+            var test =JSON.stringify({ level : level });
             console.log(test);
             res.write(test); 
             res.end(); 
