@@ -22,7 +22,6 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
          
  
 
-
   
  
     </head>
@@ -89,6 +88,8 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
          
       
 
+  <script src="js/user.js"></script>
+  <script src="js/spinner.js"></script>
   <script type="text/javascript">$(function() 
 { 
 //my startup code here.  Could be refactored into a main.js or something 
@@ -98,6 +99,22 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
            
         btn.on('click', function () 
        {
+
+if(window.user == null){
+    //TODO : serverside code to lookup existing user, find existing credits dont start this
+    //but req says new users start at 20 credits so go for that
+    //points here are zero since no storage yet too
+    window.user= new User($("login").val(),20,0);
+    
+}
+if(window.spinner == null){window.spinner = new Spinner(1,1,1);}
+
+
+window.spinner.spin();
+window.spinner.update();
+
+
+
 
 
                 $('#group_left').removeClass("hidden");
@@ -126,5 +143,8 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
           
         });
    });</script>
+  
+  
+  
     </body>
 </html>
