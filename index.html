@@ -81,40 +81,36 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
          <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
        </div>
 
-         <button type="button" id="myButton" data-loading-text="Click Me" class="btn btn-primary" >
-        Loading state
+       <button type="button" id="myButton" data-loading-text="Loading" class="btn btn-primary" >
+        Click Me
       </button>
 
       <script>
  
-           var btn = $('#myButton');
+        var btn = $('#myButton');
            
-        btn.on('click', function () {
-      //   btn.prop('disabled', true);
-          // business logic...
-          var testLevel = 1;
-          console.log('btnpress');
-          
-          $.ajax({
-            url: "/spin",
-             type: "GET",
-            data: {level:testLevel},
-       /*   success: function(o){
-   
-              //  btn.prop('disabled', false);
-                console.log("success:");
-                console.log(o);
-            },*/
-            dataType: 'json'
-          }).done(function ( data ) 
-             {
-                 //+JSON.stringify(data
-                console.log("ajax callback response");
+        btn.on('click', function () 
+        {
+            btn.prop('enabled',false)
+           // btn.text("Please wait...");
+       
+            var testLevel = 1;//todo: get from somewhere
+             
+            $.ajax(
+            {
+                url: "/spin",
+                type: "GET",
+                data: {level:testLevel},
+                dataType: 'json'
+            }).done(function ( data ) 
+            {
+                
                 console.log(data);
-                //console.log(JSON.parse(data));
-             });
+                
+            //  btn.text("Click Me");
+                btn.prop('enabled',true);
+            });
           
-        //  btn.button('reset')
         });
       </script>
          

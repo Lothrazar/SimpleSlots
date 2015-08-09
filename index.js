@@ -5,13 +5,9 @@ var http = require('http'),
 
 http.createServer(function(req, res)
 {
-
-    // _get['data']
-   
-    
-  // console.log( req.url.substring(0,6));
-    
-    
+ //TODO: refactor this into individual node_module's
+ //find better way than if/else/substring to swap based on urls, perhaps
+ //this works for temporary apps
     if(req.url == "/" || req.url == "/index.html")
     {
         fs.readFile('index.html',function (err, data)
@@ -23,23 +19,24 @@ http.createServer(function(req, res)
     }
     else if(req.url.substring(0,5) == "/spin")
     {
-       // console.log("!zxcvzxcv!ok sending out stuff...!!!");
-       //   req.on('end', function () 
-       // {
-            var get = url.parse(req.url, true).query; 
-          var level = parseInt(get['level'])+1;
+  
+        var get = url.parse(req.url, true).query; 
 
+        var level = parseInt(get['level'])+1;
 
-            res.setHeader("Content-Type", "application/json");
-         //   res.setHeader("Access-Control-Allow-Origin", "*");
-//res.writeHead(200, { 'Content-Type': 'application/json' });
-            //res.send(JSON.stringify({ level : level }));
-            // Send data and end response. 
-            //res.send(JSON.stringify({ level : level })); 
-            var test =JSON.stringify({ level : level });
-            console.log(test);
-            res.write(test); 
-            res.end(); 
-       // }); 
+        res.setHeader("Content-Type", "application/json");
+
+        res.write(JSON.stringify({ level : level })); 
+        res.end(); 
+ 
+    }
+    else
+    {
+        fs.readFile('404.html',function (err, data)
+        {
+            res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+            res.write(data);
+            res.end();
+        });
     }
 }).listen(8888);
