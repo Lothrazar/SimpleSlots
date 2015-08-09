@@ -21,13 +21,6 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
   <link type="text/css" rel="stylesheet" href="css/app.css" />
          
  
-  <script type="text/javascript">$(function() 
-{ 
-//my startup code here.  Could be refactored into a main.js or something 
-  
-      //preload images before drawing on cnavas
-
-    });</script>
 
 
   
@@ -35,12 +28,40 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
     </head>
     <body>
    
-        <div class='starter-template'>
-            Welcome to the game!
+        <div class='centered'>
+            Welcome to the game! 
+             <button style="width:140px" type="button" id="myButton" data-loading-text="Loading" class="btn btn-primary" >
+-        Play
+-      </button>
         </div>
   
    
+        <div class='centered hidden' id="group_left">
+            <img id="left_1" src="img/apple_chocolate-64.png"/>
+            <img id="left_2" src="img/apple_lapis-64.png"/>
+            <img id="left_3" src="img/apple_netherwart-64.png"/> 
+            <img id="left_4" src="img/apple_emerald-64.png"/>
+            <img id="left_5" src="img/apple_diamond-64.png"/>
+            
+        </div>
 
+        <div class='centered hidden' id="group_mid">
+            <img id="mid_1" src="img/apple_chocolate-64.png"/>
+            <img id="mid_2" src="img/apple_lapis-64.png"/>
+            <img id="mid_3" src="img/apple_netherwart-64.png"/> 
+            <img id="mid_4" src="img/apple_emerald-64.png"/>
+            <img id="mid_5" src="img/apple_diamond-64.png"/>
+            
+        </div>
+        
+        <div class='centered hidden' id="group_right">
+            <img id="right_1" src="img/apple_chocolate-64.png"/>
+            <img id="right_2" src="img/apple_lapis-64.png"/>
+            <img id="right_3" src="img/apple_netherwart-64.png"/> 
+            <img id="right_4" src="img/apple_emerald-64.png"/>
+            <img id="right_5" src="img/apple_diamond-64.png"/>
+            
+        </div>
     <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container">
          <div class="navbar-header">
@@ -59,6 +80,8 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
        </div>
      </nav>
 
+        
+        
  
     
     
@@ -66,5 +89,42 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
          
       
 
+  <script type="text/javascript">$(function() 
+{ 
+//my startup code here.  Could be refactored into a main.js or something 
+  
+      //preload images before drawing on cnavas
+ var btn = $('#myButton');
+           
+        btn.on('click', function () 
+       {
+
+
+                $('#group_left').removeClass("hidden");
+                $('#group_mid').removeClass("hidden");
+                $('#group_right').removeClass("hidden");
+       
+        //   var testLevel = 1;//todo: get from somewhere
+             /*
+               $('#group_left').removeClass("hidden");
+               $('#group_mid').removeClass("hidden");
+               $('#group_right').removeClass("hidden");
+            $.ajax(
+            {
+                url: "/spin",
+                type: "GET",
+                data: {level:testLevel},
+                dataType: 'json'
+            }).done(function ( data ) 
+            {
+                
+                console.log(data);
+                
+                btn.text("Play");
+                btn.prop('enabled',true);
+            });*/
+          
+        });
+   });</script>
     </body>
 </html>
