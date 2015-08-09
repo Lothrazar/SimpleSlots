@@ -58,13 +58,15 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
      <div class="container">
 
        <div class="starter-template"  >
-         <h1>Bootstrap starter template</h1>
-         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-       </div>
-
-       <button type="button" id="myButton" data-loading-text="Loading" class="btn btn-primary" >
-        Click Me
+         <h1>Welcome to our new slot machine</h1>
+         <p class="lead">Press Play and get started right away.</p>
+   
+       <button style="width:140px" type="button" id="myButton" data-loading-text="Loading" class="btn btn-primary" >
+        Play
       </button>
+           
+           
+       </div>
 
       <script>
  
@@ -88,7 +90,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                 
                 console.log(data);
                 
-                btn.text("Click Me");
+                btn.text("Play");
                 btn.prop('enabled',true);
             });
           
