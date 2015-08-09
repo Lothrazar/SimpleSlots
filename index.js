@@ -1,3 +1,18 @@
+//my web server module from repo https://github.com/PrinceOfAmber/CollectionTracker
+var server = require("./node_modules/server"); 
+
+server.start(process.cwd());//cwd for current working directory
+
+  
+
+/*
+
+//old stuff to delete
+
+
+
+
+
 var http = require('http'),
     url = require("url"),
     fs = require('fs');
@@ -39,4 +54,4 @@ http.createServer(function(req, res)
             res.end();
         });
     }
-}).listen(8888);
+}).listen(8888);*/
