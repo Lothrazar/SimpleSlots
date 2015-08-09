@@ -30,11 +30,13 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
         <div class='centered'>
             Welcome to the game! 
              <button style="width:140px" type="button" id="myButton" data-loading-text="Loading" class="btn btn-primary" >
--        Play
--      </button>
+                - Play -      
+             </button>
+            
+            
         </div>
   
-   
+            <table style="margin: 0px auto; "><tr><td>
         <div class='centered hidden' id="group_left">
             <img id="left_1" src="img/apple_chocolate-64.png"/>
             <img id="left_2" src="img/apple_lapis-64.png"/>
@@ -43,7 +45,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
             <img id="left_5" src="img/apple_diamond-64.png"/>
             
         </div>
-
+                    </td><td>
         <div class='centered hidden' id="group_mid">
             <img id="mid_1" src="img/apple_chocolate-64.png"/>
             <img id="mid_2" src="img/apple_lapis-64.png"/>
@@ -52,7 +54,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
             <img id="mid_5" src="img/apple_diamond-64.png"/>
             
         </div>
-        
+                    </td><td>
         <div class='centered hidden' id="group_right">
             <img id="right_1" src="img/apple_chocolate-64.png"/>
             <img id="right_2" src="img/apple_lapis-64.png"/>
@@ -61,6 +63,9 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
             <img id="right_5" src="img/apple_diamond-64.png"/>
             
         </div>
+                    </td></tr></table>
+            
+        
     <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container">
          <div class="navbar-header">
@@ -94,34 +99,39 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
 { 
 //my startup code here.  Could be refactored into a main.js or something 
   
-      //preload images before drawing on cnavas
- var btn = $('#myButton');
-           
-        btn.on('click', function () 
-       {
-
-if(window.user == null){
-    //TODO : serverside code to lookup existing user, find existing credits dont start this
-    //but req says new users start at 20 credits so go for that
-    //points here are zero since no storage yet too
-    window.user= new User($("login").val(),20,0);
-    
-}
-if(window.spinner == null){window.spinner = new Spinner(1,1,1);}
-
-
-window.spinner.spin();
-window.spinner.update();
-
-
-
-
-
+ 
+ //testing where we need this
                 $('#group_left').removeClass("hidden");
                 $('#group_mid').removeClass("hidden");
                 $('#group_right').removeClass("hidden");
+                
+                
+      //preload images before drawing on cnavas
+        var btn = $('#myButton');
+
+        btn.on('click', function () 
+       {
+         btn.prop('enabled',false);
+        if(window.user == null){
+            //TODO : serverside code to lookup existing user, find existing credits dont start this
+            //but req says new users start at 20 credits so go for that
+            //points here are zero since no storage yet too
+            window.user= new User($("login").val(),20,0);
+
+        }
+        if(window.spinner == null){window.spinner = new Spinner(1,1,1);}
+
+
+        window.spinner.spin();
+        window.spinner.update();
+
+
+
+        btn.prop('enabled',true);
+
        
-        //   var testLevel = 1;//todo: get from somewhere
+        //   var testLevel = 1;//todo: get from somewhere 
+        //TODO: all serverside things
              /*
                $('#group_left').removeClass("hidden");
                $('#group_mid').removeClass("hidden");
@@ -138,7 +148,7 @@ window.spinner.update();
                 console.log(data);
                 
                 btn.text("Play");
-                btn.prop('enabled',true);
+               
             });*/
           
         });
