@@ -98,7 +98,7 @@ Spinner.prototype.getWinnings = function()
         return 0;
 };
 
-Spinner.prototype.spin = function(callback)
+Spinner.prototype.spin = function()
 {
     //todo: play a spinning animation over where the apples go then replace with static
   //  this.left = 0;

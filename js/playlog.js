@@ -18,6 +18,10 @@ Playlog.prototype.add = function(event)
         
 }
 
+Playlog.prototype.clear = function()
+{
+     $("#winlog").html("");
+}
 Playlog.prototype.update = function()
 {
     //TODO: vertical display one event per row

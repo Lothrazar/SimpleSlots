@@ -11,26 +11,47 @@ window.App =
     init:function()
     {
         if(App.spinner == null){App.spinner = new Spinner();}
-  
-        if(App.user == null)
-        {   
-            //TODO : serverside code to lookup existing user, find existing credits dont start this
-
-            App.user = new User($("#login").val(),App._newUserStartCredits);
-        }
-
-        if(App.playlog == null){App.playlog = new Playlog();}
+   
       
         $('#btnplay').on('click', App.btn_play);
         
         $('#btnlogin').on('click', App.btn_login);
+        $('#btnlogout').on('click', App.btn_logout);
         
     },
     btn_login:function()
     {
         
-        $('#sec_game').removeClass("hidden");
+        if($("#login").val().trim().length == 0)
+        {
+            alert("Please enter a username to login");
+            return;
+        }
+        App.user = new User($("#login").val(),App._newUserStartCredits);
+        App.playlog = new Playlog();
+        App.playlog.update();
+        App.user.update();
         
+        $('#sec_game').removeClass("hidden");
+        $('#btnlogin').addClass("hidden");
+        $('#btnlogout').removeClass("hidden");
+         
+        $("#login").prop("disabled",true);
+        
+        
+    },
+    btn_logout:function()
+    { 
+        App.user = new User($("#login").val(),App._newUserStartCredits);
+        App.playlog = new Playlog();
+        App.playlog.clear();
+        
+        $('#sec_game').addClass("hidden");
+        $('#btnlogin').removeClass("hidden");
+        $('#btnlogout').addClass("hidden");
+         
+        $("#login").prop("disabled",false);
+        $("#login").val("");
     },
     btn_play:function()
     { 
