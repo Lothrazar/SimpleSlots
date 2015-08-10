@@ -28,6 +28,10 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
     <body>
         
   <!-- TODO: partial view for legend-->
+  
+  <section style="position:relative">
+      
+  
         <div style="width:210px;float:left;">
             <table class="legend">
                 <tr >
@@ -66,14 +70,49 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                 </tr>
                  
             </table>
-           
-           
+           </div>
+            <div style="float:right;margin-right:15px;">   
+  <table  >
+      
+      <tr>
+          <td> <a class="navbar-brand" >Level </a></td>  
+              
+          <td>  <input id="level" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" /></td> 
+      </tr>
+      <tr>
+        <td>  <a class="navbar-brand" > Cost per spin </a>  </td>
+        <td>   <input id="spincost" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" />    </td>
+          
+      </tr>
+      
+      <tr>
+          <td>          <a class="navbar-brand" >Matches </a></td>  
+              
+          <td>     <input id="wins" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" /></td> 
+      </tr>
+      <tr>
+          <td></td>  
+              
+          <td></td> 
+      </tr>
+  </table>
+            
+  <!-- TODO: partial view for log-->
+  <div id = "winlog">   </div>
+            
+            </div>
             
             <div style="clear:both;"></div>
+            
+            
+            
+            
+            
+  </section>
            
-        </div>
+        
    
-            <div style="clear:both;"></div>
+        <div style="clear:both;"></div>
         <div class='centered'>
             
             <br/>
@@ -137,23 +176,15 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                   
                    <input id="credits" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" />
                </li>
-               <li>
-                   
-                    <a class="navbar-brand" > &nbsp;&nbsp;&nbsp;&nbsp;Level </a>
-                  
-                   <input id="level" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" />
-               </li>
-                 <li>
-                   
-                    <a class="navbar-brand" > &nbsp;&nbsp;&nbsp;&nbsp;Matches </a>
-                  
-                   <input id="wins" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" />
-               </li>
+            
+          
                
            </ul>
          </div><!--/.nav-collapse -->
        </div>
      </nav>
+  
+  
 
         
         
@@ -176,8 +207,6 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
    });</script>
   
 
-  <!-- TODO: partial view for log-->
-  <div id = "winlog">   </div>
   
  
     </body>

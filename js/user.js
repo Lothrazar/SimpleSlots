@@ -37,6 +37,7 @@ User.prototype.update = function()
 {
     $("#credits").val(this.credits);
     $("#wins").val(this.wins);
+    $("#spincost").val(this.cost);
 };
 
 
