@@ -62,19 +62,8 @@ window.App =
         btn.prop('enabled',false);
         
         //runs a .spin() and then returns true or false
-        var amtWon = App.spinner.play( App.user );
+       App.spinner.play( App.user );
      
-        var paid = App.user.username+" paid "+App.spinner.getPointsCost(App.user.level);
-        if(amtWon > 0) 
-        {
-            App.playlog.add(paid+", won "+amtWon);
-            // TODO: do something? sound/animation / event log
-        }
-        else
-        {
-            
-            App.playlog.add(paid+", lost");
-        }
 
         btn.prop('enabled',true);
 

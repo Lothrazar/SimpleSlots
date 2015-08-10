@@ -88,19 +88,17 @@ Spinner.prototype.spin = function()
                 $("#"+this.rightimg[i]).addClass("hidden");
 
         }
-        $("#left_spin").removeClass("hidden");
-        $("#mid_spin").removeClass("hidden");
-        $("#right_spin").removeClass("hidden");
 
 
-       //$(function () 
-        //{
+        $("#left_scroll").removeClass("hidden");
+        $("#mid_scroll").removeClass("hidden");
+        $("#right_scroll").removeClass("hidden");
            //animation sample idea from http://stackoverflow.com/questions/7984577/jquery-indefinitely-scroll-and-loop-one-image-inside-a-div
         
           
             function animate_img(image) 
             {
-                var speed = Math.floor(Math.random() *  10) + 90    ;
+                var speed = Math.floor(Math.random() *  120) + 50    ;
                 if (image.css('top') == '0px') {
                     image.animate({top: '-192px'}, speed, function () {
                         animate_img(image);
@@ -116,38 +114,49 @@ Spinner.prototype.spin = function()
         animate_img($('#right_scroll').children('img'));
 //});
 
-var timeout = 2000;
+var timeout = Math.floor(Math.random() *  500) + 600    ;
 var self = this;
 setTimeout(function(){ 
-    $("#left_spin").addClass("hidden");
+   $("#left_scroll").addClass("hidden");
      self.left = self.getRandom();
      self.updateLeft();
     setTimeout(function(){ 
-        $("#mid_spin").addClass("hidden");
+        $("#mid_scroll").addClass("hidden");
         self.middle = self.getRandom();
         self.updateMid();
         setTimeout(function(){ 
-            $("#right_spin").addClass("hidden");
+            $("#right_scroll").addClass("hidden");
             self.right = self.getRandom();
             self.updateRight();
 
-              var won = self.getWinnings(App.user.level);
+              var amtWon = self.getWinnings(App.user.level);
 
               //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
               //console.log("won "+won);
-              if(won > 0)
+              if(amtWon > 0)
               {
 
-                  App.user.addCredits(won);
+                  App.user.addCredits(amtWon);
                   App.user.addWin();
 
               }
 
+               var paid = App.user.username+" paid "+App.spinner.getPointsCost(App.user.level);
+               if(amtWon > 0) 
+               {
+                    App.playlog.add(paid+", won "+amtWon);
+                }
+                else
+                {
+                    App.playlog.add(paid+", lost");
+                }
+
+
               self.update();
 
 
-        }, timeout - 1000);
-    }, timeout- 800);
+        }, timeout - 300);
+    }, timeout- 200);
 }, timeout);
 
 
