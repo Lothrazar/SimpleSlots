@@ -55,17 +55,16 @@ window.App =
     },
     btn_play:function()
     { 
-        var btn = $('#btnplay');
    
         App.user.username = $("#login").val();
 
-        btn.prop('enabled',false);
+        $('#btnplay').prop('disabled',true);
         
         //runs a .spin() and then returns true or false
        App.spinner.play( App.user );
      
 
-        btn.prop('enabled',true);
+       
 
        
         //   var testLevel = 1;//todo: get from somewhere 

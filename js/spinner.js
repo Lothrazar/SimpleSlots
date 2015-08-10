@@ -151,7 +151,9 @@ setTimeout(function(){
                     App.playlog.add(paid+", lost");
                 }
 
-
+                    //TODO: put an App.button toggle function or do this more spart way?
+                    
+                 $('#btnplay').prop('disabled',false);
               self.update();
 
 
