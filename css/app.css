@@ -10,3 +10,20 @@ body {
     height:0px;
     display:none;
 }
+
+.legend{
+    margin-left:15px;
+    margin-top:15px;
+}
+
+.legend  td {
+   border-left: 1em solid transparent;
+   border-top: 1em solid transparent;
+}
+
+.legend td:first-child {
+   border-left: 0;
+}
+table tr:first-child td {
+   border-top: 0;
+}

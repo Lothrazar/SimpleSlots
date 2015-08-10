@@ -28,7 +28,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
     <body>
         
         <div style="width:190px;float:left;">
-            <table>
+            <table class="legend">
                 <tr >
                     <td colspan="9">
                         <span style="text-align:center">Legend</span>
@@ -38,7 +38,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
-                    <td> 3x1 = 3 </td>
+                    <td > <div id="3x1" class="val">3</div> </td>
                     <td rowspan="3">
                         &nbsp; &nbsp; &nbsp;
                     </td>
@@ -50,13 +50,13 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                     <td><img src="img/apple_lapis-16.png"/> </td>
                     <td><img src="img/apple_lapis-16.png"/> </td>
                     <td><img src="img/apple_lapis-16.png"/> </td>
-                    <td> 3x2 = 6</td>
+                    <td> <span id="3x2" class="val">6</span></td>
                 </tr>
                 <tr>
                     <td>  <img   src="img/apple_netherwart-16.png"/> </td>
                     <td>  <img   src="img/apple_netherwart-16.png"/> </td>
                     <td>  <img   src="img/apple_netherwart-16.png"/> </td>
-                    <td> 3x3 = 9</td>
+                    <td> <span id="3x3" class="val">9</span></td>
                 </tr>
                  
             </table>
@@ -67,6 +67,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
            
         </div>
    
+            <div style="clear:both;"></div>
         <div class='centered'>
             
             <br/>
@@ -158,6 +159,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
 
   <script src="js/user.js"></script>
   <script src="js/spinner.js"></script>
+  <script src="js/playlog.js"></script>
   <script type="text/javascript">$(function() 
 { 
 //my startup code here.  Could be refactored into a main.js or something 
@@ -168,12 +170,12 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
     {
             //TODO : serverside code to lookup existing user, find existing credits dont start this
             //but req says new users start at 20 credits so go for that
-            //points here are zero since no storage yet too
         var newUserStartCredits = 20;
           
         window.user = new User($("login").val(),newUserStartCredits);
-        
     }
+    
+    if(window.playlog==null){window.playlog = new Playlog();}
      
     var btn = $('#myButton');
 
@@ -184,11 +186,18 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
         //runs a .spin() and then returns true or false
         var amtWon = spinner.play( window.user );
         
+        
         if(amtWon > 0) 
         {
             console.log("amtWon = "+amtWon);
             
+            playlog.add("win");
             // TODO: do something? sound/animation / event log
+        }
+        else
+        {
+            
+            playlog.add("loss");
         }
 
         btn.prop('enabled',true);
