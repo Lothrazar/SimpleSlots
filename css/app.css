@@ -5,7 +5,19 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+.scroll_ctr {
+    position : relative;
+    width    : 64px;
+    height   : 64px;
+    overflow : hidden;
+    margin-top:-15px;
+}
 
+.scroll_ctr > img {
+    position : absolute;
+    top      : 0;
+    left     : 0;
+}
 #winlog{
    /* display: table;
     margin: 0 auto;*/

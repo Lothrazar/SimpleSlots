@@ -18,48 +18,150 @@ function Spinner()
     for(var i = 1; i <= 5; i++)
         this.rightimg[i] = "right_"+i;
     
-    this.update();
-    //first time only:
-    $('#group_left').removeClass("hidden");
-    $('#group_mid').removeClass("hidden");
-    $('#group_right').removeClass("hidden");
+  
 };
 
-Spinner.prototype.update = function()
-{
-    for(var i = 1; i <= 5; i++)
+Spinner.prototype.updateLeft = function()
+{ 
+     for(var i = 1; i <= 5; i++)
     {
         if(i == this.left)
             $("#"+this.leftimg[i]).removeClass("hidden");
         else
             $("#"+this.leftimg[i]).addClass("hidden");
-        
-        
+    }
+}
+Spinner.prototype.updateMid = function()
+{ 
+     for(var i = 1; i <= 5; i++)
+    {
         if(i == this.middle)
             $("#"+this.midimg[i]).removeClass("hidden");
         else
             $("#"+this.midimg[i]).addClass("hidden");
         
-        
+    }
+}
+Spinner.prototype.updateRight = function()
+{ 
+     for(var i = 1; i <= 5; i++)
+    {
         if(i == this.right)
             $("#"+this.rightimg[i]).removeClass("hidden");
         else
             $("#"+this.rightimg[i]).addClass("hidden");
         
-    }
         
+    }
+}
+Spinner.prototype.update = function()
+{ 
+    this.updateLeft();
+    this.updateMid();
+    this.updateRight();
     $("#mux").html(this.getMultiplier());
-    
+    /*
+$("#left_spin").addClass("hidden");
+$("#mid_spin").addClass("hidden");
+$("#right_spin").addClass("hidden");
+*/
+
    // console.log("mult "+this.getMultiplier());
     
 }
-/*
-Spinner.prototype.getMaxLevel = function()
+
+Spinner.prototype.spin = function()
 {
-    if(this.level >= 3) {return 5;}
-    else {return 3;}
+    //todo: play a spinning animation over where the apples go then replace with static
+  //  this.left = 0;
+    
+    //first time only:
+    $('#group_left').removeClass("hidden");
+    $('#group_mid').removeClass("hidden");
+    $('#group_right').removeClass("hidden");
+   
+        for(var i = 1; i <= 5; i++)
+        {
+      
+                $("#"+this.leftimg[i]).addClass("hidden");
+                $("#"+this.midimg[i]).addClass("hidden");
+                $("#"+this.rightimg[i]).addClass("hidden");
+
+        }
+        $("#left_spin").removeClass("hidden");
+        $("#mid_spin").removeClass("hidden");
+        $("#right_spin").removeClass("hidden");
+
+
+       //$(function () 
+        //{
+           //animation sample idea from http://stackoverflow.com/questions/7984577/jquery-indefinitely-scroll-and-loop-one-image-inside-a-div
+        
+          
+            function animate_img(image) 
+            {
+                var speed = Math.floor(Math.random() *  10) + 90    ;
+                if (image.css('top') == '0px') {
+                    image.animate({top: '-192px'}, speed, function () {
+                        animate_img(image);
+                    });
+                } else {
+                    image.animate({top: '0px'}, speed, function () {
+                        animate_img(image);
+                    });
+                }
+            }
+        animate_img($('#left_scroll').children('img'));
+        animate_img($('#mid_scroll').children('img'));
+        animate_img($('#right_scroll').children('img'));
+//});
+
+var timeout = 2000;
+var self = this;
+setTimeout(function(){ 
+    $("#left_spin").addClass("hidden");
+     self.left = self.getRandom();
+     self.updateLeft();
+    setTimeout(function(){ 
+        $("#mid_spin").addClass("hidden");
+        self.middle = self.getRandom();
+        self.updateMid();
+        setTimeout(function(){ 
+            $("#right_spin").addClass("hidden");
+            self.right = self.getRandom();
+            self.updateRight();
+
+              var won = self.getWinnings(App.user.level);
+
+              //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
+              //console.log("won "+won);
+              if(won > 0)
+              {
+
+                  App.user.addCredits(won);
+                  App.user.addWin();
+
+              }
+
+              self.update();
+
+
+        }, timeout - 1000);
+    }, timeout- 800);
+}, timeout);
+
+
+        //TODO: this randomizaiton, plus other steps as wellshould be done server side
+       
+        
+    
+    
+        
+    //    callback();
+    //},this.timeout);
+    
+
 };
-*/
 Spinner.prototype.getMultiplier = function(level)
 {
     if(level === 1) {return 4;}
@@ -98,25 +200,6 @@ Spinner.prototype.getWinnings = function(level)
         return 0;
 };
 
-Spinner.prototype.spin = function()
-{
-    //todo: play a spinning animation over where the apples go then replace with static
-  //  this.left = 0;
-    
-    //setTimeout(function(){
-        
-        this.left = this.getRandom();
-        
-    this.middle = this.getRandom();
-    this.right = this.getRandom();
-        
-    //    callback();
-    //},this.timeout);
-    
-
-    
-    
-};
 
 Spinner.prototype.getBonusForLevel = function(level)
 {
@@ -125,29 +208,13 @@ Spinner.prototype.getBonusForLevel = function(level)
     if(level === 4){return 1000000;}//for level 1, and others
 };
  
-Spinner.prototype.play = function(user)
+Spinner.prototype.play = function()
 {
-    if(user.tryToPay() == false)
+    if(App.user.tryToPay() == false)
     {
         alert("you went broke. Try a different username");
         return 0;
     }
-    this.spin();
-    
-    var won = this.getWinnings(user.level);
-    
-    //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
-    //console.log("won "+won);
-    if(won > 0)
-    {
-        
-        user.addCredits(won);
-        user.addWin();
-         
-    }
-    
-    this.update();
-    
-    return won;
+   this.spin();
 };
 

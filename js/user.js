@@ -31,8 +31,9 @@ User.prototype.addWin = function()
         var bonus = App.spinner.getBonusForLevel(this.level);
         App.playlog.add("Levelup bonus "+bonus);
         
+        //TODO: put this in a function , the level manager
         $("#final_level").removeClass("hidden");
-        
+         
         this.addCredits(bonus);
     }
     else if(this.wins == winsForLevelFour )
