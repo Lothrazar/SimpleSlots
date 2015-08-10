@@ -38,7 +38,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
-                    <td > <div id="3x1" class="val">3</div> </td>
+                    <td > <div id="3x1" 3</div> </td>
                     <td rowspan="3">
                         &nbsp; &nbsp; &nbsp;
                     </td>
@@ -50,13 +50,13 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                     <td><img src="img/apple_lapis-16.png"/> </td>
                     <td><img src="img/apple_lapis-16.png"/> </td>
                     <td><img src="img/apple_lapis-16.png"/> </td>
-                    <td> <span id="3x2" class="val">6</span></td>
+                    <td> <span id="3x2" >6</span></td>
                 </tr>
                 <tr>
                     <td>  <img   src="img/apple_netherwart-16.png"/> </td>
                     <td>  <img   src="img/apple_netherwart-16.png"/> </td>
                     <td>  <img   src="img/apple_netherwart-16.png"/> </td>
-                    <td> <span id="3x3" class="val">9</span></td>
+                    <td> <span id="3x3" >9</span></td>
                 </tr>
                  
             </table>
@@ -165,39 +165,42 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
 //my startup code here.  Could be refactored into a main.js or something 
   
     if(window.spinner == null){window.spinner = new Spinner();}
-
+    
     if(window.user == null)
     {
             //TODO : serverside code to lookup existing user, find existing credits dont start this
             //but req says new users start at 20 credits so go for that
         var newUserStartCredits = 20;
-          
-        window.user = new User($("login").val(),newUserStartCredits);
+
+        window.user = new User($("#login").val(),newUserStartCredits);
     }
+
     
-    if(window.playlog==null){window.playlog = new Playlog();}
+    if(window.playlog == null){window.playlog = new Playlog();}
      
     var btn = $('#myButton');
 
      btn.on('click', function () 
      {
+      
+
         btn.prop('enabled',false);
         
         //runs a .spin() and then returns true or false
-        var amtWon = spinner.play( window.user );
+        var amtWon = window.spinner.play( window.user );
         
+         console.log( window.playlog);
         
+        var paid = user.username+" paid "+user.cost;
         if(amtWon > 0) 
         {
-            console.log("amtWon = "+amtWon);
-            
-            playlog.add("win");
+            window.playlog.add(paid+", won "+amtWon);
             // TODO: do something? sound/animation / event log
         }
         else
         {
             
-            playlog.add("loss");
+            window.playlog.add(paid+", lost");
         }
 
         btn.prop('enabled',true);
@@ -227,6 +230,9 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
         });
    });</script>
   
+
+  <div id = "winlog">   </div>
   
+ 
     </body>
 </html>

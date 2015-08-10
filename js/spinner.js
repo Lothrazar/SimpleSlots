@@ -87,7 +87,7 @@ Spinner.prototype.detectMatch = function()
 
 Spinner.prototype.getWinnings = function()
 {
-    //console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
+    console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
     //console.log(this.detectMatch());
     if(this.detectMatch())  //all numbers are the same so just compute the points
         return this.getMultiplier() * this.left;
