@@ -26,10 +26,40 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
  
     </head>
     <body>
-        
+         
+  <!-- TODO: partial view for nav-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+       <div class="container">
+         <div class="navbar-header">
+           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
+             <span class="sr-only">Toggle navigation</span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" >Welcome to our Web Slot Machine</a>
+         </div>
+         <div id="navbar" class="collapse navbar-collapse">
+           <ul class="nav navbar-nav">
+               <li class="active" style="margin-top:13px">
+                   <input id="login"  type="text"  value="Guest"/>
+               </li>
+         
+            
+               <li style="margin-top:10px">
+                   &nbsp;
+                   <button style="width:140px" type="button" id="btnlogin" data-loading-text="Loading" class="btn btn-primary" >
+                    - Login -      
+                 </button>
+
+               </li>
+               
+           </ul>
+         </div><!--/.nav-collapse -->
+       </div>
+     </nav>
+  
   <!-- TODO: partial view for legend-->
   
-  <section style="position:relative">
+  <section style="position:relative" id="sec_header">
       
   
         <div style="width:210px;float:left;">
@@ -91,9 +121,9 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
           <td>     <input id="wins" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" /></td> 
       </tr>
       <tr>
-          <td></td>  
-              
-          <td></td> 
+          <td>   <a class="navbar-brand" >Credits: </a></td>  
+        
+          <td>  <input id="credits" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" /></td> 
       </tr>
   </table>
             
@@ -111,12 +141,13 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
   </section>
            
         
-   
+  <section id="sec_game" class="hidden">
+      
         <div style="clear:both;"></div>
         <div class='centered'>
             
             <br/>
-             <button style="width:140px" type="button" id="myButton" data-loading-text="Loading" class="btn btn-primary" >
+             <button style="width:140px" type="button" id="btnplay" data-loading-text="Loading" class="btn btn-primary" >
                 - Play -      
              </button>
             
@@ -153,45 +184,11 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
             
         </div>
                     </td></tr></table>
-            
-        
-  <!-- TODO: partial view for nav-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-       <div class="container">
-         <div class="navbar-header">
-           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"  aria-controls="navbar">
-             <span class="sr-only">Toggle navigation</span>
-             <span class="icon-bar"></span>
-           </button>
-           <a class="navbar-brand" >Welcome to our Web Slot Machine</a>
-         </div>
-         <div id="navbar" class="collapse navbar-collapse">
-           <ul class="nav navbar-nav">
-               <li class="active">
-                   <input id="login" style="margin-top:13px" type="text"  value="Guest"/>
-               </li>
-               <li>
-                   
-                    <a class="navbar-brand" > &nbsp;&nbsp;&nbsp;&nbsp;Credits: </a>
-                  
-                   <input id="credits" style="margin-top:13px;width:80px;text-align: right; " type="text" disabled="disabled" />
-               </li>
-            
-          
-               
-           </ul>
-         </div><!--/.nav-collapse -->
-       </div>
-     </nav>
-  
+   
+  </section>         
+       
   
 
-        
-        
- 
-    
-    
-    
          
       
 

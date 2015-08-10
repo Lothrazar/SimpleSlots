@@ -3,6 +3,7 @@ function User(name, credits)
 {
     this.username = name;
     this.credits = credits;
+    this.loggedIn = false;
     this.cost = 1;//cost per play //TODO: fix implement complete this
     this.wins = 0;
     this.update();

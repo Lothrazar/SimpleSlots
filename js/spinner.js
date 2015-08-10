@@ -5,6 +5,7 @@ function Spinner()
     this.middle = 1;
     this.right = 1; 
     this.level = 1;
+    this.timeout = 500;//half second
     this.MIN_LEVEL = 1;//never changes in current version 
     //html dom ids
     this.leftimg = [];
@@ -97,11 +98,23 @@ Spinner.prototype.getWinnings = function()
         return 0;
 };
 
-Spinner.prototype.spin = function()
+Spinner.prototype.spin = function(callback)
 {
-    this.left = this.getRandom();
+    //todo: play a spinning animation over where the apples go then replace with static
+  //  this.left = 0;
+    
+    //setTimeout(function(){
+        
+        this.left = this.getRandom();
+        
     this.middle = this.getRandom();
     this.right = this.getRandom();
+        
+    //    callback();
+    //},this.timeout);
+    
+
+    
     
 };
 
@@ -124,6 +137,7 @@ Spinner.prototype.play = function(user)
         return 0;
     }
     this.spin();
+    
     var won = this.getWinnings();
     
     //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
@@ -134,6 +148,7 @@ Spinner.prototype.play = function(user)
 
         user.addCredits(won);
         user.addWin();
+        
         this.addLevel();
        // alert("win");
     }

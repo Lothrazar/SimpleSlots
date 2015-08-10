@@ -1,7 +1,5 @@
 /* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+holder for static functions
  */
 
 window.App =
@@ -23,11 +21,20 @@ window.App =
 
         if(App.playlog == null){App.playlog = new Playlog();}
       
-        $('#myButton').on('click', App.btn_play);
+        $('#btnplay').on('click', App.btn_play);
+        
+        $('#btnlogin').on('click', App.btn_login);
+        
+    },
+    btn_login:function()
+    {
+        
+        $('#sec_game').removeClass("hidden");
+        
     },
     btn_play:function()
     { 
-        var btn = $('#myButton');
+        var btn = $('#btnplay');
    
         App.user.username = $("#login").val();
 
