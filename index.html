@@ -106,7 +106,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
 { 
 //my startup code here.  Could be refactored into a main.js or something 
   
-    if(window.spinner == null){window.spinner = new Spinner(1,1,1);}
+    if(window.spinner == null){window.spinner = new Spinner();}
 
     if(window.user == null)
     {
@@ -125,21 +125,10 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
      {
         btn.prop('enabled',false);
         
-        spinner.spin();
-
-        var won = spinner.getWinnings();
+        //runs a .spin() and then returns true or false
+        var yesYouWin = spinner.play( window.user );
         
-        //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
-        //console.log("won "+won);
-        if(won > 0)
-        {
-           // console.log('you won '+won);
-            
-            user.addCredits(won);
-            
-           // alert("win");
-        }
-        
+        //if(yesYouWin) // do something?
 
         btn.prop('enabled',true);
 

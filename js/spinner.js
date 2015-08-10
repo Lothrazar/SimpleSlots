@@ -1,10 +1,10 @@
 
-function Spinner(left , middle, right, level) 
+function Spinner() 
 {
-    this.left = left;
-    this.middle = middle;
-    this.right = right; 
-    this.level = level;
+    this.left = 1;
+    this.middle = 1;
+    this.right = 1; 
+    this.level = 1;
     this.MIN_LEVEL = 1;//never changes in current version 
     //html dom ids
     this.leftimg = [];
@@ -86,10 +86,10 @@ Spinner.prototype.detectMatch = function()
 
 Spinner.prototype.getWinnings = function()
 {
-    //console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
-    //console.log(this.detectMatch());
+    console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
+    console.log(this.detectMatch());
     if(this.detectMatch())  //all numbers are the same so just compute the points
-        return this.getMultiplier() & this.left;
+        return this.getMultiplier() * this.left;
     else
         return 0;
 };
@@ -109,3 +109,27 @@ Spinner.prototype.getBonusForLevel = function()
     else if(this.level === 3){return 100000;}
     else {return 0;}//for level 1, and others
 };
+
+Spinner.prototype.play = function(user)
+{
+    if(user.tryToPay() == false)
+    {
+        alert("you went broke. Try a different username");
+        return false;
+    }
+    this.spin();
+    var won = this.getWinnings();
+    
+    //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
+    //console.log("won "+won);
+    if(won > 0)
+    {
+       // console.log('you won '+won);
+
+        user.addCredits(won);
+
+       // alert("win");
+       return true;
+    }
+    return false;
+}
