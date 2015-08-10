@@ -160,74 +160,12 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
   <script src="js/user.js"></script>
   <script src="js/spinner.js"></script>
   <script src="js/playlog.js"></script>
+  <script src="js/app.js"></script>
   <script type="text/javascript">$(function() 
 { 
-//my startup code here.  Could be refactored into a main.js or something 
+    App.init();
   
-    if(window.spinner == null){window.spinner = new Spinner();}
-    
-    if(window.user == null)
-    {
-            //TODO : serverside code to lookup existing user, find existing credits dont start this
-            //but req says new users start at 20 credits so go for that
-        var newUserStartCredits = 20;
-
-        window.user = new User($("#login").val(),newUserStartCredits);
-    }
-
-    
-    if(window.playlog == null){window.playlog = new Playlog();}
-     
-    var btn = $('#myButton');
-
-     btn.on('click', function () 
-     {
-      
-
-        btn.prop('enabled',false);
-        
-        //runs a .spin() and then returns true or false
-        var amtWon = window.spinner.play( window.user );
-        
-         console.log( window.playlog);
-        
-        var paid = user.username+" paid "+user.cost;
-        if(amtWon > 0) 
-        {
-            window.playlog.add(paid+", won "+amtWon);
-            // TODO: do something? sound/animation / event log
-        }
-        else
-        {
-            
-            window.playlog.add(paid+", lost");
-        }
-
-        btn.prop('enabled',true);
-
-       
-        //   var testLevel = 1;//todo: get from somewhere 
-        //TODO: all serverside things
-             /*
-               $('#group_left').removeClass("hidden");
-               $('#group_mid').removeClass("hidden");
-               $('#group_right').removeClass("hidden");
-            $.ajax(
-            {
-                url: "/spin",
-                type: "GET",
-                data: {level:testLevel},
-                dataType: 'json'
-            }).done(function ( data ) 
-            {
-                
-                console.log(data);
-                
-                btn.text("Play");
-               
-            });*/
-          
-        });
+  
    });</script>
   
 
