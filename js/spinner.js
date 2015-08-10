@@ -4,9 +4,9 @@ function Spinner()
     this.left = 1;
     this.middle = 1;
     this.right = 1; 
-    this.level = 1;
-    this.timeout = 500;//half second
+  // this.timeout = 500;//half second
     this.MIN_LEVEL = 1;//never changes in current version 
+    this.MAX_LEVEL = 3; 
     //html dom ids
     this.leftimg = [];
     for(var i = 1; i <= 5; i++)
@@ -48,38 +48,38 @@ Spinner.prototype.update = function()
         
     }
         
-    $("#level").val(this.level);
     $("#mux").html(this.getMultiplier());
     
-    console.log("mult "+this.getMultiplier());
+   // console.log("mult "+this.getMultiplier());
     
 }
-
+/*
 Spinner.prototype.getMaxLevel = function()
 {
     if(this.level >= 3) {return 5;}
     else {return 3;}
 };
-
-Spinner.prototype.getMultiplier = function()
+*/
+Spinner.prototype.getMultiplier = function(level)
 {
-    if(this.level === 1) {return 4;}
-    if(this.level === 2) {return 7;}
-    if(this.level === 3) {return 7;}
+    if(level === 1) {return 4;}
+    if(level === 2) {return 7;}
+    if(level === 3) {return 7;}
     else {return 1;}//shouldnt happen anyway
 };
 
 Spinner.prototype.getRandom = function()
 {
     //its either from [1,3] or [1,5]
-    return Math.floor(Math.random() * this.getMaxLevel()) + this.MIN_LEVEL;    
+    return Math.floor(Math.random() *  this.MAX_LEVEL) + this.MIN_LEVEL;    
 };
 
-Spinner.prototype.getPointsCost = function()
+Spinner.prototype.getPointsCost = function(level)
 {
-    if(this.level === 2){return 10;}
-    else if(this.level === 3){return 5000;}
-    else {return 0;}//costs zero points for level 1
+    if(level === 1){return 1;}
+    if(level === 2){return 10;}
+    if(level === 3){return 5000;}
+    else {return 0;}//doesnt happen
 };
 
 Spinner.prototype.detectMatch = function()
@@ -88,12 +88,12 @@ Spinner.prototype.detectMatch = function()
     return (this.left === this.middle) && (this.left === this.right);
 };
 
-Spinner.prototype.getWinnings = function()
+Spinner.prototype.getWinnings = function(level)
 {
-    console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
+   // console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
     //console.log(this.detectMatch());
     if(this.detectMatch())  //all numbers are the same so just compute the points
-        return this.getMultiplier() * this.left;
+        return this.getMultiplier(level) * this.left;
     else
         return 0;
 };
@@ -118,17 +118,13 @@ Spinner.prototype.spin = function()
     
 };
 
-Spinner.prototype.getBonusForLevel = function()
+Spinner.prototype.getBonusForLevel = function(level)
 {
-    if(this.level === 2){return 100;}
-    else if(this.level === 3){return 100000;}
-    else {return 0;}//for level 1, and others
+    if(level === 2){return 100;}
+    if(level === 3){return 100000;}
+    if(level === 4){return 1000000;}//for level 1, and others
 };
-Spinner.prototype.addLevel = function()
-{
-    this.level++;
-}
-
+ 
 Spinner.prototype.play = function(user)
 {
     if(user.tryToPay() == false)
@@ -138,7 +134,7 @@ Spinner.prototype.play = function(user)
     }
     this.spin();
     
-    var won = this.getWinnings();
+    var won = this.getWinnings(user.level);
     
     //console.log("S<>  "+spinner.left+" "+spinner.middle+" "+spinner.right);
     //console.log("won "+won);
@@ -156,4 +152,5 @@ Spinner.prototype.play = function(user)
     this.update();
     
     return won;
-}
+};
+

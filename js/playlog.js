@@ -30,8 +30,6 @@ Playlog.prototype.update = function()
     {
         var latest = this.events[this.events.length-1];
         
-        console.log(latest);
-        
        $("#winlog").append("<br/>"+latest);
        
        var element = document.getElementById("winlog");
