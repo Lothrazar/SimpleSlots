@@ -29,8 +29,9 @@ Playlog.prototype.update = function()
         console.log(latest);
         
        $("#winlog").append("<br/>"+latest);
-        
-        document.getElementById("winlog").scrollTop = element.scrollHeight;
+       
+       var element = document.getElementById("winlog");
+        element.scrollTop = element.scrollHeight;
        
     }/*
     //toggle button to hide show events.

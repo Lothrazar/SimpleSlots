@@ -27,23 +27,29 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
     </head>
     <body>
         
-        <div style="width:190px;float:left;">
+  <!-- TODO: partial view for legend-->
+        <div style="width:210px;float:left;">
             <table class="legend">
                 <tr >
                     <td colspan="9">
                         <span style="text-align:center">Legend</span>
+                         &nbsp; &nbsp; &nbsp;
+                          &nbsp; &nbsp; &nbsp;<!-- TODO yes i know there are better ways to do hspacing than this-->
+                          &nbsp; &nbsp; &nbsp;
+                          Multiplier
                     </td>
                 </tr>
                 <tr>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
                     <td> <img   src="img/apple_chocolate-16.png"/> </td>
-                    <td > <div id="3x1" 3</div> </td>
-                    <td rowspan="3">
-                        &nbsp; &nbsp; &nbsp;
+                    <td > <div id="3x1"> 3</div> </td>
+                    <td rowspan="3"  style="vertical-align:center">
+                        X 
                     </td>
                     <td rowspan="3">
-                        * Multiplier
+                        &nbsp; &nbsp; &nbsp;<span id="mux" >-</span> 
+                      
                       </td>
                 </tr>
                 <tr>
@@ -79,7 +85,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
         </div>
         
         
-  
+  <!-- TODO: partial view for spinner-->
             <table style="margin: 0px auto; "><tr><td>
         <div class='centered hidden' id="group_left">
             <img id="left_1" src="img/apple_chocolate-64.png"/>
@@ -110,6 +116,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
                     </td></tr></table>
             
         
+  <!-- TODO: partial view for nav-->
     <nav class="navbar navbar-inverse navbar-fixed-top">
        <div class="container">
          <div class="navbar-header">
@@ -169,6 +176,7 @@ Sam Bassett imported this starter template from http://getbootstrap.com/examples
    });</script>
   
 
+  <!-- TODO: partial view for log-->
   <div id = "winlog">   </div>
   
  

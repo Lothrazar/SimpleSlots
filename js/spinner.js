@@ -45,10 +45,12 @@ Spinner.prototype.update = function()
         else
             $("#"+this.rightimg[i]).addClass("hidden");
         
+    }
         
     $("#level").val(this.level);
-       
-    }
+    $("#mux").html(this.getMultiplier());
+    
+    console.log("mult "+this.getMultiplier());
     
 }
 
