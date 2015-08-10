@@ -46,6 +46,7 @@ Spinner.prototype.update = function()
             $("#"+this.rightimg[i]).addClass("hidden");
         
         
+    $("#level").val(this.level);
        
     }
     
@@ -86,8 +87,8 @@ Spinner.prototype.detectMatch = function()
 
 Spinner.prototype.getWinnings = function()
 {
-    console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
-    console.log(this.detectMatch());
+    //console.log("getWinnings "+ this.getMultiplier()+" * "+this.left);
+    //console.log(this.detectMatch());
     if(this.detectMatch())  //all numbers are the same so just compute the points
         return this.getMultiplier() * this.left;
     else
@@ -100,7 +101,6 @@ Spinner.prototype.spin = function()
     this.middle = this.getRandom();
     this.right = this.getRandom();
     
-    this.update();
 };
 
 Spinner.prototype.getBonusForLevel = function()
@@ -109,13 +109,17 @@ Spinner.prototype.getBonusForLevel = function()
     else if(this.level === 3){return 100000;}
     else {return 0;}//for level 1, and others
 };
+Spinner.prototype.addLevel = function()
+{
+    this.level++;
+}
 
 Spinner.prototype.play = function(user)
 {
     if(user.tryToPay() == false)
     {
         alert("you went broke. Try a different username");
-        return false;
+        return 0;
     }
     this.spin();
     var won = this.getWinnings();
@@ -127,9 +131,11 @@ Spinner.prototype.play = function(user)
        // console.log('you won '+won);
 
         user.addCredits(won);
-
+        this.addLevel();
        // alert("win");
-       return true;
     }
-    return false;
+    
+    this.update();
+    
+    return won;
 }
