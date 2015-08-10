@@ -72,7 +72,7 @@ User.prototype.tryToPay = function()
 
 User.prototype.update = function()
 {
-    $("#credits").val(this.credits);
+    $("#credits").val(this.credits.toLocaleString());
     $("#wins").val(this.wins);
     $("#spincost").val(App.spinner.getPointsCost(this.level));
     $("#level").val(this.level);

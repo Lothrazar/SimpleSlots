@@ -140,13 +140,10 @@ Spinner.prototype.play = function(user)
     //console.log("won "+won);
     if(won > 0)
     {
-       // console.log('you won '+won);
-
+        
         user.addCredits(won);
         user.addWin();
-        
-        this.addLevel();
-       // alert("win");
+         
     }
     
     this.update();

@@ -32,7 +32,7 @@ Playlog.prototype.update = function()
         
        $("#winlog").append("<br/>"+latest);
        
-       var element = document.getElementById("winlog");
+        var element = document.getElementById("winlog");
         element.scrollTop = element.scrollHeight;
        
     }/*
