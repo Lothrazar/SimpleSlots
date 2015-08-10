@@ -131,6 +131,7 @@ Spinner.prototype.play = function(user)
        // console.log('you won '+won);
 
         user.addCredits(won);
+        user.addWin();
         this.addLevel();
        // alert("win");
     }

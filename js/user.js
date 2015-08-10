@@ -4,8 +4,15 @@ function User(name, credits)
     this.username = name;
     this.credits = credits;
     this.cost = 1;//cost per play //TODO: fix implement complete this
+    this.wins = 0;
     this.update();
 };
+
+User.prototype.addWin = function()
+{
+    this.wins++;
+    this.update();
+}
 
 User.prototype.addCredits = function(c)
 {
@@ -28,7 +35,8 @@ User.prototype.tryToPay = function()
 
 User.prototype.update = function()
 {
-    $("#points").val(this.credits);
+    $("#credits").val(this.credits);
+    $("#wins").val(this.wins);
 };
 
 
